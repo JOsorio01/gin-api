@@ -16,7 +16,7 @@ test:
   script:
     - go test tests/*.go
 
-stagign:
+staging:
   stage: deploy
   script:
     - apt-get update -qy
