@@ -5,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"gitlab.com/JOsorio01/josorio-gin-app/entity"
+	"gitlab.com/JOsorio01/josorio-gin-app/repository"
 	"gitlab.com/JOsorio01/josorio-gin-app/service"
 )
 
@@ -13,6 +14,8 @@ const (
 	DESCRIPTION = "Video Description"
 	URL         = "https://youtu.be/JgW-i2QjgHQ"
 )
+
+var videoRepository repository.VideoRepository = repository.NewVideoRepository()
 
 func getVideo() entity.Video {
 	return entity.Video{
@@ -23,7 +26,7 @@ func getVideo() entity.Video {
 }
 
 func TestFindAll(t *testing.T) {
-	service := service.New()
+	service := service.New(videoRepository)
 
 	service.Save(getVideo())
 
